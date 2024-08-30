@@ -50,6 +50,23 @@ sudo make netbsd-rc
 sudo make openrc
 ```
 
+To obtain an **API key**, go to [Hetzner DNS Console](https://dns.hetzner.com/settings/api-token).
+
+### Getting the Zone ID
+
+To get the Zone ID please run following
+```´sh
+curl --location 'https://dns.hetzner.com/api/v1/zones?Auth-API-Token=MYSUPERCOOLAPIKEY' | jq -r '.zones[] | "\(.name) \(.id)"'
+
+```
+The Output will look something like:
+
+```
+geek.tech gb9gPjc5Ao9wK3ia42qSuQ
+foo.bar ZWidz55jw5qdMnBlPDasNC
+```
+Now you need to choose which Zone ID you need, that would be the Right Side that is the Zone ID
+
 ## Configuration
 
 Configuration file is located at `/usr/local/etc/hetzner_ddns.conf`
@@ -59,7 +76,7 @@ Configuration file is located at `/usr/local/etc/hetzner_ddns.conf`
 interval='60'
 
 # Hetzner DNS API key
-key='18fe3b02339b23ef2418f9feda1b69ef'
+key='MYSUPERCOOLAPIKEY'
 
 # Top level domain name Zone ID
 zone='MYSUPERCOOLZONEID'
@@ -67,8 +84,6 @@ zone='MYSUPERCOOLZONEID'
 # Space separated host subdomains (@ for domain itself)
 records='homelab media vpn'
 ```
-
-To obtain an **API key**, go to [Hetzner DNS Console](https://dns.hetzner.com/settings/api-token).
 
 ### Configuration for prebuilt packages
 
