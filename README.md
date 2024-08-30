@@ -21,7 +21,8 @@ Officially supported operating systems:
 - NetBSD
 
 Packages for the latest stable version can be found
-[here](https://github.com/filiparag/hetzner_ddns/releases/latest).
+[here](https://github.com/filiparag/hetzner_ddns/releases/latest). ATTENTION this is going Back to the Origin of this fork since most likely i will not keep it very much up to date!
+Maybe Once or Twice in a Year.
 
 Feel free to contribute to [first-party support](./release) for other operating systems.
 
@@ -31,7 +32,7 @@ Dependencies: `awk`, `curl`, `jq`.
 
 ```ini
 # Download
-git clone https://github.com/filiparag/hetzner_ddns.git
+git clone https://github.com/Clankcoll/HetznerDynDNS.git
 cd hetzner_ddns
 
 # Install
