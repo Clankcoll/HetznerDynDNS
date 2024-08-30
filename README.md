@@ -147,3 +147,6 @@ sudo service hetzner_ddns start/stop
 ```
 
 **Log file** is located at `/var/log/hetzner_ddns.log`
+
+### Credits
+EveryOne
