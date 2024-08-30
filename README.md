@@ -31,7 +31,7 @@ Dependencies: `awk`, `curl`, `jq`.
 
 ```ini
 # Download
-git clone https://github.com/filiparag/hetzner_ddns.git
+git clone https://github.com/Clankcoll/HetznerDynDNS.git
 cd hetzner_ddns
 
 # Install
