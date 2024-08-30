@@ -1,4 +1,4 @@
-# Hetzner Dynamic DNS Daemon 
+# Hetzner Dynamic DNS Daemon  
 
 A simple daemon to continuously update Hetzner DNS
 *A* and *AAAA* records for your server with a dynamic IP address.
