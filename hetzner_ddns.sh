@@ -1,7 +1,7 @@
 #!/bin/sh
 
 self='hetzner_ddns'
-version='0.2.5'
+version='0.3.0'
 daemon=0
 
 for arg in $(seq "$#"); do
