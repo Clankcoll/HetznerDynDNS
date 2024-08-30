@@ -61,8 +61,8 @@ interval='60'
 # Hetzner DNS API key
 key='18fe3b02339b23ef2418f9feda1b69ef'
 
-# Top level domain name
-domain='example.com'
+# Top level domain name Zone ID
+zone='MYSUPERCOOLZONEID'
 
 # Space separated host subdomains (@ for domain itself)
 records='homelab media vpn'
