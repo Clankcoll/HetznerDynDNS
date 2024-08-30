@@ -1,3 +1,7 @@
+# TODO
+Make Githubactions Working to create automatic DockerImage
+Make DockerFile
+
 # Hetzner Dynamic DNS Daemon  
 
 A simple daemon to continuously update Hetzner DNS
@@ -15,7 +19,7 @@ Officially supported operating systems:
 - Alpine Linux
 - Arch Linux ([AUR](https://aur.archlinux.org/packages/hetzner_ddns/))
 - Debian / Ubuntu
-- Docker ([Docker Hub](https://hub.docker.com/r/filiparag/hetzner_ddns))
+- Docker ([Docker Hub](https://hub.docker.com/r/filiparag/hetzner_ddns)) - Not This fix this is going back to filips version of this program
 - Fedora / openSUSE ([Copr](https://copr.fedorainfracloud.org/coprs/filiparag/hetzner_ddns/))
 - FreeBSD ([Ports tree](https://www.freshports.org/dns/hetzner_ddns/))
 - NetBSD
