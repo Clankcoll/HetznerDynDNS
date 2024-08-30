@@ -37,7 +37,7 @@ then
 fi
 
 read_configuration() {
-    # Read variabels from configuration file
+    # Read variables from configuration file
     if test -r "/usr/local/etc/$self.conf"; then
         printf '[%s] Reading configuration from %s\n' \
             "$(date '+%Y-%m-%d %H:%M:%S')" "/usr/local/etc/$self.conf" \
@@ -63,8 +63,8 @@ read_configuration() {
             "$(date '+%Y-%m-%d %H:%M:%S')" | tee -a "/var/log/$self.log"
         exit 78
     fi
-    if [ -z "$domain" ]; then
-        printf '[%s] Error: Domain is not set, unable to proceed\n' \
+    if [ -z "$zone" ]; then
+        printf '[%s] Error: Zone ID is not set, unable to proceed\n' \
             "$(date '+%Y-%m-%d %H:%M:%S')" | tee -a "/var/log/$self.log"
         exit 78
     fi
@@ -83,25 +83,6 @@ test_api_key() {
         printf '[%s] Error: Invalid API key\n' \
             "$(date '+%Y-%m-%d %H:%M:%S')" | tee -a "/var/log/$self.log"
         exit 22
-    fi
-}
-
-get_zone() {
-    # Get zone ID
-    zone="$(
-        curl "https://dns.hetzner.com/api/v1/zones" \
-            -H "Auth-API-Token: $key" 2>/dev/null | \
-        jq -r '.zones[] | .name + " " + .id' | \
-        awk -v d="$domain" '$1==d {print $2}'
-    )"
-    if [ -z "$zone" ]; then
-        printf '[%s] Error: Unable to fetch zone ID for domain %s\n' \
-            "$(date '+%Y-%m-%d %H:%M:%S')" "$domain" | tee -a "/var/log/$self.log"
-        return 1
-    else
-        printf '[%s] Zone for %s: %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" \
-            "$domain" "$zone" | tee -a "/var/log/$self.log"
-        return 0
     fi
 }
 
@@ -272,9 +253,9 @@ run_ddns() {
     read_configuration
     test_api_key
 
-    while ! get_zone || ! get_records; do
+    while ! get_records; do
         sleep $((interval/2+1))
-        printf '[%s] Retrying to fetch zone and record data\n' "$(date '+%Y-%m-%d %H:%M:%S')" \
+        printf '[%s] Retrying to fetch record data\n' "$(date '+%Y-%m-%d %H:%M:%S')" \
                 | tee -a "/var/log/$self.log"
     done
 
