@@ -1,38 +1,45 @@
-# TODO
-Make Githubactions Working to create automatic DockerImage
-Make DockerFile
+# ATTENTION
 
-# Hetzner Dynamic DNS Daemon  
+This Repository will be set Read only since  
+A) The DNS API of hetzner has changed / will be full deactivated  
+B) I myself dont have a need anymore to run this DynDNS on a windows docker machine.  
 
-A simple daemon to continuously update Hetzner DNS
-*A* and *AAAA* records for your server with a dynamic IP address.
 
-It features support for multiple subdomain records with painless
-configuration and administration.
+~# TODO~      
+~Make Githubactions Working to create automatic DockerImage~
+~Make DockerFile~
 
-## Installation
+~# Hetzner Dynamic DNS Daemon~
 
-### Prebuilt packages
+~A simple daemon to continuously update Hetzner DNS~
+~*A* and *AAAA* records for your server with a dynamic IP address.~
 
-Officially supported operating systems:
+~It features support for multiple subdomain records with painless~
+~configuration and administration.~
 
-- Alpine Linux
-- Arch Linux ([AUR](https://aur.archlinux.org/packages/hetzner_ddns/))
-- Debian / Ubuntu
-- Docker ([Docker Hub](https://hub.docker.com/r/filiparag/hetzner_ddns)) - Not This fix this is going back to filips version of this program
-- Fedora / openSUSE ([Copr](https://copr.fedorainfracloud.org/coprs/filiparag/hetzner_ddns/))
-- FreeBSD ([Ports tree](https://www.freshports.org/dns/hetzner_ddns/))
-- NetBSD
+~## Installation~
 
-Packages for the latest stable version can be found
-[here](https://github.com/filiparag/hetzner_ddns/releases/latest). ATTENTION this is going Back to the Origin of this fork since most likely i will not keep it very much up to date!
-Maybe Once or Twice in a Year.
+~### Prebuilt packages~
 
-Feel free to contribute to [first-party support](./release) for other operating systems.
+~Officially supported operating systems:~
 
-### Manual Installation
+~- Alpine Linux~
+~- Arch Linux ([AUR](https://aur.archlinux.org/packages/hetzner_ddns/))~
+~- Debian / Ubuntu~
+~- Docker ([Docker Hub](https://hub.docker.com/r/filiparag/hetzner_ddns)) - Not This fix this is going back to filips version of this program~
+~- Fedora / openSUSE ([Copr](https://copr.fedorainfracloud.org/coprs/filiparag/hetzner_ddns/))~
+~- FreeBSD ([Ports tree](https://www.freshports.org/dns/hetzner_ddns/))~
+~- NetBSD~
 
-Dependencies: `awk`, `curl`, `jq`.
+~Packages for the latest stable version can be found~
+~[here](https://github.com/filiparag/hetzner_ddns/releases/latest). ATTENTION this is going Back to the Origin of this fork since most likely i will not keep it very much up to date!~
+~Maybe Once or Twice in a Year.~
+
+~Feel free to contribute to [first-party support](./release) for other operating systems.~
+
+~### Manual Installation~
+
+~Dependencies: `awk`, `curl`, `jq`.~
 
 ```ini
 # Download
@@ -55,26 +62,26 @@ sudo make netbsd-rc
 sudo make openrc
 ```
 
-To obtain an **API key**, go to [Hetzner DNS Console](https://dns.hetzner.com/settings/api-token).
+~To obtain an **API key**, go to [Hetzner DNS Console](https://dns.hetzner.com/settings/api-token).~
 
-### Getting the Zone ID
+~### Getting the Zone ID~
 
-To get the Zone ID please run following
+~To get the Zone ID please run following~
 ```´sh
 curl --location 'https://dns.hetzner.com/api/v1/zones?Auth-API-Token=MYSUPERCOOLAPIKEY' | jq -r '.zones[] | "\(.name) \(.id)"'
 
 ```
-The Output will look something like:
+~The Output will look something like:~
 
 ```
 geek.tech gb9gPjc5Ao9wK3ia42qSuQ
 foo.bar ZWidz55jw5qdMnBlPDasNC
 ```
-Now you need to choose which Zone ID you need, that would be the Right Side that is the Zone ID
+~Now you need to choose which Zone ID you need, that would be the Right Side that is the Zone ID~
 
-## Configuration
+~## Configuration~
 
-Configuration file is located at `/usr/local/etc/hetzner_ddns.conf`
+~Configuration file is located at `/usr/local/etc/hetzner_ddns.conf`~
 
 ```sh
 # Seconds between updates / TTL value
@@ -90,19 +97,19 @@ zone='MYSUPERCOOLZONEID'
 records='homelab media vpn'
 ```
 
-### Configuration for prebuilt packages
+~### Configuration for prebuilt packages~
 
-Default configuration location differs in prebuilt packages:
+~Default configuration location differs in prebuilt packages:~
 
-- Linux distributions: `/etc/hetzner_ddns.conf`
-- FreeBSD: `/usr/local/etc/hetzner_ddns.conf`
-- NetBSD: `/usr/pkg/etc/hetzner_ddns.conf`
+~- Linux distributions: `/etc/hetzner_ddns.conf`~
+~- FreeBSD: `/usr/local/etc/hetzner_ddns.conf`~
+~- NetBSD: `/usr/pkg/etc/hetzner_ddns.conf`~
 
-### Manage records for multiple domains
+~### Manage records for multiple domains~
 
-Currently, this utility supports management of one domain per daemon.
-If you have multiple domains, use CNAME records to point them to one
-the daemon will manage, as shown in the following example:
+~Currently, this utility supports management of one domain per daemon.~
+~If you have multiple domains, use CNAME records to point them to one~
+~the daemon will manage, as shown in the following example:~
 
 ```sh
 # Managed domain (master.tld)
@@ -113,10 +120,10 @@ the daemon will manage, as shown in the following example:
 service		IN	CNAME	master.tld.
 ```
 
-### Multiple daemon instances for **systemd**
+~### Multiple daemon instances for **systemd**~
 
-If your operating system relies on systemd, you can easily run
-multiple daemons as shown below:
+~If your operating system relies on systemd, you can easily run~
+~multiple daemons as shown below:~
 
 ```ini
 # Create configuration file for foobar.tld domain
@@ -128,7 +135,7 @@ sudo cp -p /usr/local/etc/hetzner_ddns.conf.sample /usr/local/etc/hetzner_ddns.f
 sudo systemctl enable hetzner_ddns@foobar
 ```
 
-## Usage
+~## Usage~
 
 **Run on startup**
 ```ini
@@ -142,7 +149,7 @@ sudo service hetzner_ddns enable
 sudo rc-update add hetzner_ddns
 ```
 
-**Start/Stop**
+~**Start/Stop**~
 ```ini
 # systemd
 sudo systemctl start/stop hetzner_ddns
@@ -151,7 +158,9 @@ sudo systemctl start/stop hetzner_ddns
 sudo service hetzner_ddns start/stop
 ```
 
-**Log file** is located at `/var/log/hetzner_ddns.log`
+~**Log file** is located at `/var/log/hetzner_ddns.log`~
 
-### Credits
-EveryOne
+~### Credits~
+~EveryOne~
+
+
